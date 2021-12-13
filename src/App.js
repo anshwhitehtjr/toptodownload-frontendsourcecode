@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./Components/AppComponents/Navbar";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Home from "./Components/Pages/Home";
 
-function App() {
+function App () {
+
+  const pages = [
+    {
+      title: 'Home',
+      href: '/',
+      sno: 1
+    },
+    {
+      title: 'About',
+      href: '/about',
+      sno: 2
+    }
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Navbar title='Up To Download' mode='dark' anchors={ pages } />
+        <Switch>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+          <Route exact path='/about'>
+            <h1>Hello, World! About</h1>
+          </Route>
+        </Switch>
+      </Router>
+    </>
   );
 }
 
